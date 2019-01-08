@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +39,7 @@ public class TestBase {
 	public static Properties config = new Properties();
 	public static Properties OR = new Properties();
 	public static FileInputStream fis;
-	public static Logger log = Logger.getLogger("devpinoyLogger");
+	// public static Logger log = Logger.getLogger("devpinoyLogger");
 	public static ExcelReader excel = new ExcelReader(
 	        System.getProperty("user.dir") + "\\src\\test\\resources\\excel\\testData.xlsx");
 	public static WebDriverWait wait;
@@ -62,7 +61,7 @@ public class TestBase {
 			}
 			try {
 				config.load(fis);
-				log.debug("Config file loaded !!!");
+				// log.debug("Config file loaded !!!");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -77,7 +76,7 @@ public class TestBase {
 			}
 			try {
 				OR.load(fis);
-				log.debug("OR file loaded");
+				// log.debug("OR file loaded");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -99,24 +98,24 @@ public class TestBase {
 				System.setProperty("webdriver.gecko.driver",
 				        System.getProperty("user.dir") + "\\src\\test\\resources\\executables\\geckodriver.exe");
 				driver = new FirefoxDriver();
-				log.debug("Firefox launched !!!");
+				// log.debug("Firefox launched !!!");
 
 			} else if (config.getProperty("browser").equals("chrome")) {
 
 				System.setProperty("webdriver.chrome.driver",
 				        System.getProperty("user.dir") + "\\src\\test\\resources\\executables\\chromedriver.exe");
 				driver = new ChromeDriver();
-				log.debug("Chrome launched !!!");
+				// log.debug("Chrome launched !!!");
 			} else if (config.getProperty("browser").equals("ie")) {
 
 				System.setProperty("webdriver.ie.driver",
 				        System.getProperty("user.dir") + "\\src\\\\test\\resources\\executables\\.exe");
 				driver = new InternetExplorerDriver();
-				log.debug("IE launched !!!");
+				// log.debug("IE launched !!!");
 			}
 
 			driver.get(config.getProperty("testSiteURL"));
-			log.debug("Navigate to " + config.getProperty("testSiteURL"));
+			// log.debug("Navigate to " + config.getProperty("testSiteURL"));
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")),
 			        TimeUnit.SECONDS);
@@ -204,7 +203,7 @@ public class TestBase {
 		if (driver != null) {
 
 			driver.quit();
-			log.debug("Completed !!!");
+			// log.debug("Completed !!!");
 		}
 	}
 }
